@@ -5,20 +5,31 @@ import axios from 'axios';
 
 const UploadComponent = () => {
   const [fileList, setFile] = useState([]);
+  const [downloadLink, setLink] = useState('');
+  const [name, setName] = useState('');
   const mergeAndConvert = () => {
     console.log('fileList', fileList);
     var formData = new FormData();
     fileList.map((file) => {
       formData.append('file[]', file);
     });
-    axios.request({
-      method: 'POST',
-      url: 'http://192.168.1.3:8010/pdfmerge',
-      data: formData,
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
+    axios
+      .request({
+        method: 'POST',
+        url: 'http://192.168.1.3:8010/pdfmerge',
+        data: formData,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      .then((res) => {
+        console.log('res', res);
+        if (res && res.data && res.data.code === 200) {
+          const { link, name } = res.data;
+          setLink(link);
+          setName(name);
+        }
+      });
   };
   return (
     <>
@@ -43,6 +54,11 @@ const UploadComponent = () => {
         <Button icon={<UploadOutlined />}>Upload</Button>
       </Upload>
       <Button onClick={mergeAndConvert}>合并PDF</Button>
+      {downloadLink && (
+        <a href={downloadLink} download={name}>
+          下载
+        </a>
+      )}
     </>
   );
 };
