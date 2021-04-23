@@ -16,7 +16,7 @@ const UploadComponent = () => {
     axios
       .request({
         method: 'POST',
-        url: 'http://192.168.1.3:8010/imgtopdf',
+        url: 'http://218.82.122.90:8010/imgtopdf',
         data: formData,
         headers: {
           'Content-Type': 'multipart/form-data',
