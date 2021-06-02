@@ -13,6 +13,9 @@ const UploadComponent = () => {
       <div>
         <Link to={'/compress-pdf'}>压缩PDF</Link>
       </div>
+      <div>
+        <Link to={'/img-to-txt'}>图片转文字</Link>
+      </div>
     </>
   );
 };

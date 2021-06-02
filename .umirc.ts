@@ -12,6 +12,7 @@ export default defineConfig({
     { path: '/', component: '@/pages/index' },
     { path: '/img-to-pdf', component: '@/pages/ImgToPDF' },
     { path: '/merge-pdf', component: '@/pages/MergePDF' },
+    { path: '/img-to-txt', component: '@/pages/ImgToTxt' },
   ],
   fastRefresh: {},
 });
